@@ -1,4 +1,5 @@
-﻿using MyHomePage.Service;
+﻿using MyHomePage.DateBase;
+using MyHomePage.Service;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,10 @@ namespace MyHomePage.Controllers
     {
         public ActionResult Index()
         {
+            var service = new NewsService();
+            var viewList = service.GetList();
+            ViewBag.NewsCount = viewList.Count();
+
             return View();
         }
 
@@ -20,8 +25,27 @@ namespace MyHomePage.Controllers
             var viewList = service.GetList();
 
             return PartialView("_NewsList", viewList);
+        }
 
+        [HttpGet]
+        public ActionResult AddNews()
+        {
+            return View();
+        }
 
+        [HttpPost]
+        public ActionResult AddNews(News data)
+        {
+            if(data == null)
+            {
+                return View("Index");
+            }
+
+            var service = new NewsService();
+            var viewList = service.Add(data);
+
+            System.Threading.Thread.Sleep(1000);
+            return View("Index");
         }
 
         public ActionResult About()

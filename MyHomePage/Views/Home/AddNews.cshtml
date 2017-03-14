@@ -1,0 +1,182 @@
+﻿<style>
+    .error {
+        font-size: 12px;
+        color: red;
+    }
+</style>
+<div class="container">
+    <div class="row">
+        <div class="col-md-12">
+            <blockquote class="bg-danger">
+                <ol>
+                    <li>感謝您的填寫</li>
+                    <li>請務必填寫正確資料</li>
+                    <li>僅供測試用~</li>
+                </ol>
+            </blockquote>
+        </div>
+    </div>
+    <div class="row bg-info">
+        <div class="col-md-2"></div>
+        <form id="NewsData" class="col-md-8" action="@Url.Action("AddNews","Home")" method="post">
+            <div class="form-group has-feedback">
+                <label>名稱</label>
+                <input id="name" name="name" type="text" placeholder="請輸入一個名稱" class="form-control" />
+                <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <label>Email</label>
+                <input id="email" name="email" type="email" placeholder="請輸入Email" class="form-control" />
+                <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+            </div>
+            <div class="form-group has-feedback">
+                <label>主題名稱</label>
+                <input id="Title" name="Title" type="text" placeholder="請輸入主題標題" class="form-control" />
+                <span class="glyphicon glyphicon-remove form-control-feedback hidden" aria-hidden="true"></span>
+            </div>
+            <div class="form-group">
+                <label>主題內容</label>
+                <textarea id="Content" name="Content" rows="5" class="form-control"></textarea>
+            </div>
+            <div class="checkbox">
+                <label>
+                    <input id="needcheck" name="needcheck" type="checkbox" />勾選後才能送出
+                </label>
+            </div>
+            <button type="button" id="submitbtn" class="btn btn-primary" data-loading-text="Sending..." data-toggle="tooltip" data-placement="top" title="新增一筆消息">Submit</button>
+            <button type="button" id="closebtn" class="btn btn-primary" data-toggle="tooltip" data-placement="top" title="取消新增消息" style="margin-left:10px">Cancle</button>
+        </form>
+        @*<div class="row">
+                <div class="col-md-12 alert alert-warning alert-dismissible fade in hidden" role="alert">
+                    <button type="button" class="close" data-dismiss="alert">
+                        <span aria-hidden="true">&times;</span>
+                        <span class="sr-only">Close</span>
+                    </button>
+                    <strong>錯誤</strong><p id="errormsg"></p>
+                </div>
+            </div>*@
+        <div class="col-md-2"></div>
+    </div>
+</div>
+<div class="modal fade" id="modal-panel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2>提醒</h2>
+            </div>
+            <div class="modal-body">
+                是否確定要取消？
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" onclick="BackToIndex()">是</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal">否</button>
+            </div>
+        </div>
+
+    </div>
+
+
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#submitbtn').on('click', function () {
+                var $btn = $(this).button('loading');
+                validation();
+
+                $('input.error').each(function () {
+                    var panelerror = $(this).parent();
+                    panelerror.addClass('has-error');
+                    panelerror.find('span').removeClass('hidden');
+                })
+                $btn.button('reset');
+            });
+
+            $('#closebtn').on('click', function () {
+                $('#modal-panel').modal({
+                    keyboard: false,
+                    backdrop: false
+                }, 'show');
+            });
+
+            $('[data-toggle="tooltip"]').tooltip()
+
+        });
+
+        function validation() {
+            ClearValidateState();
+            $('#NewsData').validate({
+                errorClass: "error",
+                rules: {
+                    name: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 200
+                    },
+                    email: {
+                        required: true,
+                        email: true
+                    },
+                    Title: {
+                        required: true,
+                        minlength: 3,
+                        maxlength: 200
+                    },
+                    Content: {
+                        required: true,
+                    },
+                    needcheck: {
+                        required:true
+                    }
+
+                },
+                messages: {
+                    name: {
+                        required: "請輸入一個名稱",
+                        minlength: "主題名稱長度至少為3個字元",
+                        maxlength: "主題名稱長度至多為200個字元"
+                    },
+                    email: {
+                        required: "請輸入Email",
+                        email: "請輸入正確的Email"
+                    },
+                    Title: {
+                        required: "請輸入主題",
+                        minlength: "主題名稱長度至少為3個字元",
+                        maxlength: "主題名稱長度至多為200個字元"
+                    },
+                    Content: {
+                        required: "請輸入內容"
+                    },
+                    needcheck: {
+                        required: "必須要勾選！"
+                    }
+                },
+                //showErrors: function (errorMap, errorList) {
+
+                //    $('#errormsg').text("您尚有" + this.numberOfInvalids() + "個錯誤，請先修正後再嘗試送出！");
+                //    $('#errormsg').parent().removeClass('hidden');
+                //},
+                submitHandler: function (form) {
+                    form.submit();
+                }
+            });
+            $('#NewsData').submit();
+        };
+
+        function ClearValidateState() {
+            $('.has-error').each(function () {
+                $(this).find('span').addClass('hidden');
+                $(this).removeClass('has-error');
+
+            })
+        };
+
+        function BackToIndex() {
+            window.location = '@Url.Action("Index","Home")';
+        }
+
+    </script>
+}

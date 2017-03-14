@@ -181,7 +181,11 @@
       <LastGenOutput>HomePage.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Images\emma_b.jpg" />
+    <Content Include="Images\emma_s.jpg" />
     <Content Include="Images\icon_newspaper.png" />
+    <Content Include="Images\Jolie_b.jpg" />
+    <Content Include="Images\Jolie_s.jpg" />
     <Content Include="Images\nature_1.1.jpg" />
     <Content Include="Images\nature_2.1.jpg" />
     <Content Include="Images\nature_3.jpg" />
@@ -219,6 +223,7 @@
     <Content Include="Views\Home\Contact.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Home\_NewsList.cshtml" />
+    <Content Include="Views\Home\AddNews.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
