@@ -1,0 +1,29 @@
+﻿@model List<MyHomePage.DateBase.News>
+
+@if (Model != null && Model.Count > 0)
+{
+    int count = 0;
+    <div class="panel-group" id="accordion" role="tablist" aria-multiselectable="true">
+        @foreach (var item in Model)
+        {
+
+            <div class="panel panel-info">
+                <div class="panel-heading" role="tab" id="@String.Format("Head{0}",count)">
+                    <h4 class="panel-title">
+                        <a data-toggle="collapse" data-parent="#accordion" href="#@String.Format("Body{0}",count)" aria-expanded="false" aria-controls="@String.Format("Body{0}",count)">
+                            @item.Title
+                        </a>
+                    </h4>
+                </div>
+                <div id="@String.Format("Body{0}",count)" class="panel-collapse collapse" role="tabpanel" aria-labelledby="@String.Format("Head{0}",count)">
+                    <div class="panel-body">
+                        @item.Content
+                    </div>
+                </div>
+            </div>
+            count = count + 1;
+        }
+    </div>
+}
+
+

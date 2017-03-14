@@ -1,4 +1,5 @@
-﻿using System;
+﻿using MyHomePage.Service;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -11,6 +12,16 @@ namespace MyHomePage.Controllers
         public ActionResult Index()
         {
             return View();
+        }
+
+        public ActionResult NewsList()
+        {
+            var service = new NewsService();
+            var viewList = service.GetList();
+
+            return PartialView("_NewsList", viewList);
+
+
         }
 
         public ActionResult About()

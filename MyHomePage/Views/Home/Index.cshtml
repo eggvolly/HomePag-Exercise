@@ -8,10 +8,33 @@
 </div>
 
 <div class="row">
-    <div class="col-md-4">
+    <div class="col-md-2 visible-md-block visible-lg-block"></div>
+    <div class="col-md-8 col-sm-12">
         <h2>時事新聞</h2>
-        <div id="news-panel">
-
+        <div id="newspanel">
         </div>
     </div>
+    <div class="col-md-2 visible-md-block visible-lg-block"></div>
 </div>
+
+@section Scripts{
+<script type="text/javascript">
+    $(document).ready(function () {
+        GetList();
+    })
+
+    function GetList() {
+        $.ajax({
+            type: 'GET',
+            url: '@Url.Action("NewsList", "Home")',
+            cache: false,
+            success: function (resultHTML) {
+                $('#newspanel').html(resultHTML);
+            },
+            error: function () {
+
+            }
+        })
+    }
+</script>
+}
