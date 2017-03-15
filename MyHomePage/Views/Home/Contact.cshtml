@@ -4,6 +4,110 @@
         <div class="well col-md-12">
             <h1>技術分享<small>歡迎大家彼此交流意見</small></h1>
         </div>
-    </div>
+        <div class="row" id="forumpanel">
+        </div>
 
+        <div class="row">
+            <div class="col-md-3 col-md-offset-9">
+                <button type="button" id="AddForum" class="btn btn-primary">新增主題</button>
+            </div>
+        </div>
+    </div>
 </div>
+<div class="modal fade" id="modal-panel">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h2>提醒</h2>
+            </div>
+            <div class="modal-body">
+                @*是否確定要取消？*@
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary" data-dismiss="modal">確定</button>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+@section Scripts{
+    <script type="text/javascript">
+        $(document).ready(function () {
+            $('#AddForum').on('click', function () {
+                window.location = '@Url.Action("AddForum","Home")'
+            });
+
+            GetForum();
+        })
+
+        function GetForum() {
+            $.ajax({
+                type: 'GET',
+                url: '@Url.Action("GetForums","Home")',
+                cache: false,
+                success: function (resultHtml) {
+                    $('#forumpanel').html(resultHtml);
+                },
+                error: function () {
+                    $('.modal-body').text("系統錯誤，詳情請洽系統管理員。");
+                    $('#modal-panel').modal({
+                        keyboard: false,
+                        backdrop: false
+                    }, 'show');
+                }
+            })
+        };
+
+        function AddLikeCount(id) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddLikeCount", "Home")',
+                data:{
+                    recId:id
+                },
+                cache: false,
+                success: function (resultHtml) {
+                    $('.modal-body').text("更新成功!");
+                    $('#modal-panel').modal({
+                        keyboard: false,
+                        backdrop: false
+                    }, 'show');
+                },
+                error: function () {
+                    $('.modal-body').text("系統錯誤，詳情請洽系統管理員。");
+                    $('#modal-panel').modal({
+                        keyboard: false,
+                        backdrop: false
+                    }, 'show');
+                }
+            })
+        }
+
+        function AddUnlikeCount(id) {
+            $.ajax({
+                type: 'POST',
+                url: '@Url.Action("AddUnlikeCount", "Home")',
+                data: {
+                    recId: id
+                },
+                cache: false,
+                success: function (resultHtml) {
+                    $('.modal-body').text("更新成功!");
+                    $('#modal-panel').modal({
+                        keyboard: false,
+                        backdrop: false
+                    }, 'show');
+                },
+                error: function () {
+                    $('.modal-body').text("系統錯誤，詳情請洽系統管理員。");
+                    $('#modal-panel').modal({
+                        keyboard: false,
+                        backdrop: false
+                    }, 'show');
+                }
+            })
+        }
+    </script>
+}

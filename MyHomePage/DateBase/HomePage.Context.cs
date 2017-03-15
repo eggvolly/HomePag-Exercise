@@ -26,5 +26,6 @@ namespace MyHomePage.DateBase
         }
     
         public virtual DbSet<News> News { get; set; }
+        public virtual DbSet<ForumArticle> ForumArticle { get; set; }
     }
 }

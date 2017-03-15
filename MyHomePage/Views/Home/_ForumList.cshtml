@@ -1,0 +1,39 @@
+﻿@model List<MyHomePage.DateBase.ForumArticle>
+
+@if (Model != null && Model.Count() > 0)
+{
+    foreach (var item in Model)
+    {
+        <div class="container-fluid">
+            <div class="row">
+                <blockquote class="col-md-12 bg-info">
+                    <h3>@item.Subject</h3>
+                    <footer>@item.CreateUserName</footer>
+                </blockquote>
+            </div>
+            <div class="row">
+                <div class="col-md-12">
+                    <p>@item.Content</p>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-3 col-md-offset-9 visible-md visible-lg">
+                    <code>like</code><span>@item.LikeCount</span>
+                    <code>Unlike</code><span>@item.UnlikeCount</span>
+                </div>
+            </div>
+            <div class="row" style="margin-bottom:15px">
+                <div class="col-md-3">
+                    <div class="btn-group">
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-expanded="false">心情</button>
+                        <ul class="dropdown-menu list-inline" style="min-width:60px; width:70px">
+                            <li style="width:30px"><img src="~/Images/like.png" style="cursor:pointer" onclick="AddLikeCount('@item.RecId')" class="img-responsive" /></li>
+                            <li style="width:30px"><img src="~/Images/unlike.jpg" style="cursor:pointer" onclick="AddUnlikeCount('@item.RecId')" class="img-responsive" /></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-9"></div>
+            </div>
+        </div>
+    }
+}

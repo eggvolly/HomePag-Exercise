@@ -61,5 +61,44 @@ namespace MyHomePage.Controllers
 
             return View();
         }
+
+        [HttpGet]
+        public ActionResult GetForums()
+        {
+            var service = new ForumService();
+            var viewModel = service.GetList();
+            return PartialView("_ForumList", viewModel);
+        }
+
+        [HttpGet]
+        public ActionResult AddForum()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult AddForum(ForumArticle data)
+        {
+            var service = new ForumService();
+            service.Add(data);
+
+            return View("Contact");
+        }
+
+        public JsonResult AddLikeCount(string recId)
+        {
+            var service = new ForumService();
+            service.AddCount(recId, true);
+
+            return Json("success");
+        }
+
+        public JsonResult AddUnlikeCount(string recId)
+        {
+            var service = new ForumService();
+            service.AddCount(recId, false);
+
+            return Json("success");
+        }
     }
 }
