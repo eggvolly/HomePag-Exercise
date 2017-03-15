@@ -181,6 +181,8 @@
       <LastGenOutput>HomePage.cs</LastGenOutput>
     </Content>
     <None Include="Scripts\jquery-3.1.1.intellisense.js" />
+    <Content Include="Images\ann_b.jpg" />
+    <Content Include="Images\ann_s.jpg" />
     <Content Include="Images\emma_b.jpg" />
     <Content Include="Images\emma_s.jpg" />
     <Content Include="Images\icon_newspaper.png" />
@@ -189,6 +191,18 @@
     <Content Include="Images\nature_1.1.jpg" />
     <Content Include="Images\nature_2.1.jpg" />
     <Content Include="Images\nature_3.jpg" />
+    <Content Include="Images\news1.jpg" />
+    <Content Include="Images\news10.jpg" />
+    <Content Include="Images\news11.jpg" />
+    <Content Include="Images\news12.jpg" />
+    <Content Include="Images\news2.jpg" />
+    <Content Include="Images\news3.jpg" />
+    <Content Include="Images\news4.jpg" />
+    <Content Include="Images\news5.jpg" />
+    <Content Include="Images\news6.jpg" />
+    <Content Include="Images\news7.jpg" />
+    <Content Include="Images\news8.jpg" />
+    <Content Include="Images\news9.jpg" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
     <Content Include="Scripts\jquery-3.1.1.js" />
