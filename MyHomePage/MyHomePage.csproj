@@ -245,6 +245,7 @@
     <Content Include="Views\Home\_NewsList.cshtml" />
     <Content Include="Views\Home\AddNews.cshtml" />
     <Content Include="Views\Home\_ForumList.cshtml" />
+    <Content Include="Views\Home\AddForum.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
