@@ -246,6 +246,7 @@
     <Content Include="Views\Home\AddNews.cshtml" />
     <Content Include="Views\Home\_ForumList.cshtml" />
     <Content Include="Views\Home\AddForum.cshtml" />
+    <Content Include="Views\Home\TabExample.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

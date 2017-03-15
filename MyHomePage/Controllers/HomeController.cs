@@ -100,5 +100,10 @@ namespace MyHomePage.Controllers
 
             return Json("success");
         }
+
+        public ActionResult TabExample()
+        {
+            return View();
+        }
     }
 }
