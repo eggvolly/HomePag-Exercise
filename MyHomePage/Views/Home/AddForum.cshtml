@@ -58,6 +58,7 @@
 </div>
 
 @section Scripts{
+    <script type="text/javascript" src="~/Scripts/jquery-validate.bootstrap-tooltip.js"></script>
     <script type="text/javascript">
         $(document).ready(function () {
             $('#submitbtn').on('click', function () {
@@ -143,6 +144,10 @@
                 //    $('#errormsg').text("您尚有" + this.numberOfInvalids() + "個錯誤，請先修正後再嘗試送出！");
                 //    $('#errormsg').parent().removeClass('hidden');
                 //},
+                tooltip_options: {
+                    //CreateUserName: { title: '請輸入一個名稱', placement: 'right', html: true },
+                    //example5: { placement: 'right', html: true }
+                },
                 submitHandler: function (form) {
                     form.submit();
                 }
